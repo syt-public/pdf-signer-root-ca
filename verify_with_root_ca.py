@@ -27,7 +27,7 @@ def get_digital_id(cert):
     formatted_id = f"{hex_str[0:4]}-{hex_str[4:8]}-{hex_str[8:12]}-{hex_str[12:16]}"
     return formatted_id
 
-def load_root_ca(root_ca_path="root_ca_certificate.pem"):
+def load_root_ca(root_ca_path="root-ca.crt"):
     """Load the trusted Root CA certificate"""
     try:
         with open(root_ca_path, 'rb') as f:
@@ -35,10 +35,10 @@ def load_root_ca(root_ca_path="root_ca_certificate.pem"):
         return root_cert
     except FileNotFoundError:
         print(f"⚠️  Root CA not found at: {root_ca_path}")
-        print("   Download from: https://syt-public.github.io/pdf-signer-root-ca/root-ca.pem")
+        print("   Download from: https://syt-public.github.io/pdf-signer-root-ca/root-ca.crt")
         return None
 
-def verify_pdf_with_root_ca(file_path, root_ca_path="root_ca_certificate.pem"):
+def verify_pdf_with_root_ca(file_path, root_ca_path="root-ca.crt"):
     print(f"\n{'='*70}")
     print(f"VERIFYING PDF: {file_path}")
     print(f"{'='*70}\n")
@@ -149,11 +149,11 @@ def verify_pdf_with_root_ca(file_path, root_ca_path="root_ca_certificate.pem"):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python verify_with_root_ca.py <pdf_file> [root_ca.pem]")
+        print("Usage: python verify_with_root_ca.py <pdf_file> [root-ca.crt]")
         print("\nExample:")
         print("  python verify_with_root_ca.py signed.pdf")
-        print("  python verify_with_root_ca.py signed.pdf custom_root_ca.pem")
+        print("  python verify_with_root_ca.py signed.pdf custom_root_ca.crt")
     else:
         pdf_file = sys.argv[1]
-        root_ca = sys.argv[2] if len(sys.argv) > 2 else "root_ca_certificate.pem"
+        root_ca = sys.argv[2] if len(sys.argv) > 2 else "root-ca.crt"
         verify_pdf_with_root_ca(pdf_file, root_ca)

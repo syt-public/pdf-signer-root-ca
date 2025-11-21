@@ -6,7 +6,7 @@ Root Certificate Authority for the SYT PDF Signer Android application.
 https://syt-public.github.io/pdf-signer-root-ca/
 
 ## 📥 Download
-- [Root CA Certificate (PEM)](https://syt-public.github.io/pdf-signer-root-ca/root-ca.pem)
+- [Root CA Certificate (CRT)](https://syt-public.github.io/pdf-signer-root-ca/root-ca.crt)
 - [Verification Script](https://syt-public.github.io/pdf-signer-root-ca/verify_with_root_ca.py)
 
 ## 🔐 SHA-256 Fingerprint
