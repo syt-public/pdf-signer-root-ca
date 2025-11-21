@@ -226,11 +226,119 @@
             <div class="section">
                 <p style="font-size: 1.1em; color: #555;">
                     This page hosts the Root Certificate Authority (CA) for the Antigravity PDF Signer Android
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                    });
-                    </script>
+                    application.
+                    Use this certificate to verify the authenticity of PDFs signed by our app.
+                </p>
+            </div>
+
+            <div class="download-section">
+                <h2 style="color: white; border: none; margin-bottom: 10px;">Download Root CA Certificate</h2>
+                <p style="margin-bottom: 20px;">Click below to download the certificate</p>
+                <a href="root-ca.crt" class="download-btn" download>📥 Download root-ca.crt</a>
+            </div>
+
+            <div class="section">
+                <h2>SHA-256 Fingerprint</h2>
+                <div class="fingerprint">
+                    <strong>Certificate Fingerprint (SHA-256):</strong>
+                    8A:A9:19:C4:AB:12:54:5C:AC:3A:2B:DA:B2:19:6A:8E:BF:A1:F5:5B:8E:BF:A1:F5:5B:8E:BF:A1:F5:5B:8E:BF
+                </div>
+                <p style="margin-top: 15px; color: #6c757d; font-size: 0.95em;">
+                    ⚠️ Always verify this fingerprint matches when downloading the certificate from any source.
+                </p>
+            </div>
+
+            <div class="section">
+                <div class="verify-box">
+                    <h3>✅ How to Verify a Signed PDF</h3>
+                    <ol>
+                        <li>Download the Root CA certificate using the button above</li>
+                        <li>Download the verification script: <code>verify_with_root_ca.py</code></li>
+                        <li>Install required Python packages: <code>pip install pyhanko cryptography</code></li>
+                        <li>Run verification: <code>python verify_with_root_ca.py signed.pdf root-ca.crt</code></li>
+                    </ol>
+                    <p style="margin-top: 15px;">
+                        The script will verify both the Digital ID and the Root CA signature.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Certificate Details</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>Subject</h4>
+                        <p>CN=Antigravity PDF Signer Root CA<br>
+                            OU=Root CA<br>
+                            O=Antigravity PDF Signer<br>
+                            C=US</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Technical Details</h4>
+                        <p><strong>Algorithm:</strong> EC secp256r1<br>
+                            <strong>Signature:</strong> SHA-256 with ECDSA<br>
+                            <strong>Validity:</strong> 20 years<br>
+                            <strong>Type:</strong> Root CA
+                        </p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Key Usage</h4>
+                        <p>• Digital Signature<br>
+                            • Certificate Signing<br>
+                            • CRL Signing<br>
+                            • Basic Constraints: CA=TRUE</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Security Features</h2>
+                <ul class="feature-list">
+                    <li>All user certificates are signed by this Root CA</li>
+                    <li>Each PDF includes a unique 16-digit Digital ID</li>
+                    <li>Digital ID is cryptographically bound to the signing key</li>
+                    <li>Dual-layer verification: Digital ID + Root CA signature</li>
+                    <li>Deterministic key generation ensures consistency</li>
+                    <li>Offline signing capability (no internet required)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>What This Certificate Does</h2>
+                <p>
+                    This Root CA certificate establishes a chain of trust for all PDFs signed by the Antigravity PDF
+                    Signer app.
+                    When you verify a PDF:
+                </p>
+                <ol style="margin: 15px 0 15px 20px;">
+                    <li>The verification script checks that the Digital ID matches the public key (prevents spoofing)
+                    </li>
+                    <li>It verifies that the user's certificate was signed by this Root CA (proves authenticity)</li>
+                    <li>If both checks pass, you can trust the PDF was signed by our genuine app</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                <strong>Antigravity PDF Signer</strong> |
+                Last Updated: <span id="lastUpdate"></span>
+            </p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/syt-public/pdf-signer-root-ca" target="_blank">View on GitHub</a> |
+                <a href="root-ca.crt" download>Download Certificate</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Display last update date
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
 </body>
 
 </html>
