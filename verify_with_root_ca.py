@@ -35,7 +35,7 @@ def load_root_ca(root_ca_path="root_ca_certificate.pem"):
         return root_cert
     except FileNotFoundError:
         print(f"⚠️  Root CA not found at: {root_ca_path}")
-        print("   Download from: https://yoursite.com/root-ca.pem")
+        print("   Download from: https://syt-public.github.io/pdf-signer-root-ca/root-ca.pem")
         return None
 
 def verify_pdf_with_root_ca(file_path, root_ca_path="root_ca_certificate.pem"):
